@@ -13,22 +13,23 @@ reddit = praw.Reddit(client_id='FTwCG3MILzD61w',
                      user_agent='Flair bot by u/ItsTheRedditPolice')
 
 
-# BUG: sends pm with the last 8 posts from r/creatorservices
-
 def scansub(sub):
+    # --------- Enter your Reddit username here! (Without the "u/") ----------
+    user = "ItsTheRedditPolice"
+    # ------------------------------------------------------------------------
+
     # --------- Add your flairs you would like to track here! ---------------
     flairs = ["Looking For Paid Services", "Hiring", "Hiring - Open", "Task"]
     # -------------------------------------------------------------------------
-    for submission in reddit.subreddit(sub).stream.submissions():
+    for submission in reddit.subreddit(sub).stream.submissions(skip_existing=True):
         rawtitle = submission.title
-        title = rawtitle.split()
         flair = submission.link_flair_text
         link = submission.permalink
         subreddit = submission.subreddit
         if flair in flairs:
-            reddit.redditor('ItsTheRedditPolice').message(f'Match found in r/{subreddit}!',
-                                                          f'I have found a post containing your flair(s): {flair}\n\n'
-                                                          f'Title: {rawtitle}\n\nLink: {link}')
+            reddit.redditor(user).message(f'Match found in r/{subreddit}',
+                                                      f'I have found a post containing your flair(s): {flair}\n\n'
+                                                      f'Title: {rawtitle}\n\nLink: {link}')
             print(f"* Match Found! Sent a PM! ({flair} - {rawtitle})")
         else:
             pass
@@ -36,7 +37,7 @@ def scansub(sub):
 
 print(f"Successfully logged in as: {reddit.user.me()}\n----------------------------------------------------")
 time.sleep(5)
-print("Bot is now running!\nKeep this window open to keep the bot running!\n"
+print("Bot is now running!\nKeep this script running to keep the bot active!\n"
       "------------Bot by u/ItsTheRedditPolice-------------")
 time.sleep(1)
 
