@@ -1,21 +1,17 @@
 import praw
 import time
 
-# FlairyBot
-# ACoolBot54!
-# the above are details for the account "FlairyBot" which is used to PM you on reddit.
 
-
-reddit = praw.Reddit(client_id='FTwCG3MILzD61w',
-                     client_secret='qEjosVQHQIFtEhCZZUywGVxDdBs',
-                     username="FlairyBot",
-                     password="ACoolBot54!",
-                     user_agent='Flair bot by u/ItsTheRedditPolice')
+reddit = praw.Reddit(client_id='',
+                     client_secret='',
+                     username="",
+                     password="",
+                     user_agent='')
 
 
 def scansub(sub):
     # --------- Enter your Reddit username here! (Without the "u/") ----------
-    user = "ItsTheRedditPolice"
+    user = ""
     # ------------------------------------------------------------------------
 
     # --------- Add your flairs you would like to track here! ---------------
